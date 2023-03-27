@@ -1,0 +1,15 @@
+version: '3'
+services:
+  node_b:
+    extends: 
+      file: docker-compose.yml
+      service: main
+    networks:
+      - main
+      - b
+networks:
+  b:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.254.1.0/24

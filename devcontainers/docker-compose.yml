@@ -1,0 +1,22 @@
+version: '3'
+services:
+  main:
+    build: .
+    cap_add:
+      - NET_ADMIN
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    devices:
+      - /dev/net/tun
+    networks:
+      - main
+    #volumes:
+    #  - ..:/workspace
+    tty: true
+networks:
+  main:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.254.254.0/24
